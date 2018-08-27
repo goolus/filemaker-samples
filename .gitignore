@@ -26,8 +26,8 @@ config/master.key
 .env
 
 ## Environment normalization:
-/vents/.bundle
-vendor/bundle
+/events/.bundle
+/events/vendor
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
