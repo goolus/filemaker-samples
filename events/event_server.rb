@@ -27,6 +27,7 @@ class EventServer
     end
     result(200, :text , content)
   end
+  
   def show(type = :text)
     event = Event.find(@query['id'])
     path = template_path("show.html.erb")
@@ -38,6 +39,7 @@ class EventServer
     end
     result(200, type, content)
   end
+  
   def create
     data = ::JSON.parse(@params.body.read)
     event = Event.new(data)
@@ -48,7 +50,17 @@ class EventServer
       result(500, {status: false}.to_json)
     end
   end
-
+  def update
+    data = ::JSON.parse(@params.body.read)
+    event = Event.find_by(event_id: data['event_id'])
+    event.update_attributes(data)
+    if(event.valid?)
+      result(200, {status: true}.to_json)
+    else
+      result(500, {status: false}.to_json)
+    end
+  end
+  
   def destroy
     Event.destroy_all
   end
@@ -74,6 +86,13 @@ class EventServer
       case env['PATH_INFO']
       when '/'
         return create()
+      else
+        result(404, {status: 404})
+      end
+    when 'PATCH','PUT'
+      case env['PATH_INFO']
+      when '/'
+        return update()
       else
         result(404, {status: 404})
       end
