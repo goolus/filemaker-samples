@@ -13,6 +13,7 @@ class Event
   field :body, type: String
   field :image, type: String
   field :pubDate, type: Date
+  index({event_id: 1}, {unique: true, name: 'event_id_index'})
 end
 
 class EventServer
@@ -43,6 +44,7 @@ class EventServer
   def create
     data = ::JSON.parse(@params.body.read)
     event = Event.new(data)
+
     if(event.valid?) 
       event.save
       result(200, {status: true}.to_json)

@@ -12,9 +12,13 @@ $ sudo apt install mongodb-org
 
 ## installation and run
 ```
-$ git clone ****
-$ cd ****
+$ git clone git@gitlab.goo-us.com:goolus/filemaker-course.git
+$ cd filemaker-course/events
 $ bundle install --path=vendor/bundle
+$ bundle exec rack-console
+[1] pry(main)> Event.create_indexes
+=> true
+[2] pry(main)> quit
 $ bundle exec rackup
 ```
 
@@ -22,4 +26,9 @@ $ bundle exec rackup
 ```
 $ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d {"event_id": 1, "organizer": "test organizer", "title": "Event Title", "body": "bodybodybody", "image": "data:image/jpg:base64,#{BAE64Image} http://localhost:9292/"
 $ open 'http://localhost:9292/'
+```
+or
+```
+$ cd filemaker-course/events
+$ ./test_data.sh POST
 ```
