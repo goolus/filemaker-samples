@@ -45,7 +45,7 @@ class EventServer
     data = ::JSON.parse(@params.body.read)
     if(data.class == Array)
       data.each do |event|
-        Event.new(event)
+        event = Event.new(event)
         if(event.valid?)
           event.save
         end
