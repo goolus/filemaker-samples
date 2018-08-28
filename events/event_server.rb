@@ -43,14 +43,18 @@ class EventServer
   
   def create
     data = ::JSON.parse(@params.body.read)
-    event = Event.new(data)
-
-    if(event.valid?) 
+    if(data.class == Array)
+      data.each do |event|
+        Event.new(event)
+        if(event.valid?)
+          event.save
+        end
+      end
+    else
+      event = Event.new(data)
       event.save
-      result(200, {status: true}.to_json)
-    else 
-      result(500, {status: false}.to_json)
     end
+    result(200, {status: true}.to_json)
   end
   def update
     data = ::JSON.parse(@params.body.read)
@@ -69,7 +73,7 @@ class EventServer
   
   def call(env)
     @params = Rack::Request.new(env)
-    @query  = Rack::Utils.parse_query(@params.query_string, d =nil)
+    @query  = Rack::Utils.parse_query(@params.query_string, d = nil)
     case env['REQUEST_METHOD']
     when 'GET'
       case env['PATH_INFO']
