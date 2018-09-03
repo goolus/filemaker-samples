@@ -5,16 +5,24 @@ require 'json'
 
 Mongoid.load!('./mongoid.yml', :production)
 
+class Organizer
+  include Mongoid::Document
+  field :name, type: String
+  filed :tel, type: String
+  filed :fax, type: String
+  filed :contact_staff, type: String
+end
+
 class Event
   include Mongoid::Document
   field :event_id, type: Integer
-  field :organizer, type: String
   field :title, type: String
   field :body, type: String
   field :image, type: String
   field :pubDate, type: Date
   index({event_id: 1}, {unique: true, name: 'event_id_index'})
 end
+
 
 class EventServer
   def index(type = :text)

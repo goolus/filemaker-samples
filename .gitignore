@@ -28,7 +28,9 @@ config/master.key
 ## Environment normalization:
 /events/.bundle
 /events/vendor
-
+/events_rails/vendor/
+/events_rails/.bundle
+/events_rails/tmp
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
