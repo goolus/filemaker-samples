@@ -26,11 +26,15 @@ config/master.key
 .env
 
 ## Environment normalization:
-/events/.bundle
-/events/vendor
-/events_rails/vendor/
-/events_rails/.bundle
-/events_rails/tmp
+events/.bundle
+events/vendor
+events_rails/vendor/
+events_rails/.bundle
+events_rails/tmp
+iot_rails/vendor/
+iot_rails/.bundle
+iot_rails/tmp
+
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
