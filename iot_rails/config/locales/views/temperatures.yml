@@ -1,0 +1,5 @@
+ja:
+  temperatures:
+    index:
+      created_at: 取得時間
+      current_temp: 現在の気温

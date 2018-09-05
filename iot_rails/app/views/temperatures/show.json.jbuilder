@@ -1,0 +1,1 @@
+json.extract! @temperature, :temp, :created_at
