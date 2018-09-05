@@ -52,6 +52,7 @@ class EventServer
   def create
     data = ::JSON.parse(@params.body.read)
     if(data.class == Array)
+      Event.destroy_all
       data.each do |event|
         event = Event.new(event)
         if(event.valid?)
@@ -59,8 +60,13 @@ class EventServer
         end
       end
     else
-      event = Event.new(data)
-      event.save
+      event = Event.find_or_initialize_by(event_id: data['event_id'])
+      if event.new_record?
+        event.attributes = data
+        event.save
+      else
+        event.update_attributes(data)
+      end
     end
     result(200, {status: true}.to_json)
   end
