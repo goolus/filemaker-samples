@@ -1,0 +1,8 @@
+<h1><%= @event.title %></h1>
+<p>開催日：<%= @event.pub_date.try(:strftime,"%Y年%m月%d日") %></p>
+<p>主催：<%= @event.organizer %></p>
+<p><%= @event.body %></p>
+<% if @event.image.present? %>
+<img src="<%= @event.image %>"></img>
+<% end %>
+<p><%= link_to '一覧へ', events_path %></p>
