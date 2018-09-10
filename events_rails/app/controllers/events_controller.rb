@@ -17,14 +17,22 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.find_or_initialize_by(id: params[:event][:id])
-    respond_to do |format|
-      if @event.update_or_create(event_params)
-        format.html { redirect_to @event, notice: 'Event was succesfully updated.' }
-        format.json { render :show, status: :created, location: @event }
+    if params.has_key?(:events)
+      if Event.list_upload(params[:events])
+        render plain: "success!!"
       else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        render plain: "failed", status: 500
+      end
+    elsif params.has_key?(:event)
+      @event = Event.find_or_initialize_by(id: params[:event][:id])
+      respond_to do |format|
+        if @event.update_or_create(event_params)
+          format.html { redirect_to @event, notice: 'Event was succesfully updated.' }
+          format.json { render :show, status: :created, location: @event }
+        else
+          format.html { render :new }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -42,4 +50,5 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:id, :organizer, :image, :body, :title, :pub_date)
   end
+
 end
