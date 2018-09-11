@@ -1,0 +1,10 @@
+ja:
+  events:
+    index:
+      event_list: 今月のイベント一覧
+      event_title: イベントタイトル
+      pub_date: 開催日
+    show:
+      pub_date: 開催日
+      organizer: 主催
+      to_list: 一覧へ

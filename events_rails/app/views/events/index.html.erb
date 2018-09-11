@@ -1,6 +1,14 @@
-<h1>Events#index</h1>
-<% @events.each do |event| %>
-  <ul>
-    <li><%= link_to event.title, event_path(event) %></li>
-  </ul>
-<% end %>
+<h1><%= t ".event_list" %></h1>
+<table>
+  <thead>
+    <tr><th><%= t ".pub_date" %></th><th><%= t ".event_title" %></th></tr>
+  </thead>
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.pub_date.try(:strftime, "%Y年%m月%d日") %></td>
+      <td><%= link_to event.title, event_path(event) %></td>
+    </tr>
+  <% end %>
+  <tbody>
+</table>
