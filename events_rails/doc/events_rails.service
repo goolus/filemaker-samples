@@ -11,6 +11,6 @@ Environment=RAILS_ENV=production
 EnvironmentFile=/usr/share/nginx/events_rails/doc/events_rails.env
 PIDFile=/usr/share/nginx/events_rails/tmp/pids/server.pid
 ExecStart=/usr/local/rbenv/shims/bundle exec rails s -e production
-ExecStop=/usr/local/rbenv/shims/bundle exec pumactl -S /usr/share/nginx/events_rails/pids/server.pid stop
+ExecStop=/usr/local/rbenv/shims/bundle exec pumactl -S /usr/share/nginx/events_rails/tmp/pids/server.pid stop
 [Install]
 WantedBy=multi-user.target
