@@ -2,7 +2,7 @@
 
 require_relative 'config/environment'
 
-#RAILS_RELATIVE_URL_ROOT='/iot_server'
+RAILS_RELATIVE_URL_ROOT='/'
 if RAILS_RELATIVE_URL_ROOT then
   map RAILS_RELATIVE_URL_ROOT do
     run Rails.application
