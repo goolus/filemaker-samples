@@ -1,4 +1,4 @@
-# filemaker-samples/iot_rails
+filemaker-samples/iot_rails
 ==============================
 本プロジェクトはマイコン(ESP32)からJSONデータで送られてくる温度センサの情報を収集し、一覧データをJSONで出力したり、最新の温度情報をブラウザに表示する事が出来ます。
 

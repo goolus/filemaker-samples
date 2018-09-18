@@ -1,4 +1,4 @@
-# filemaker-samples/events_rails
+filemaker-samples/events_rails
 ================================
 本プロジェクトはFilemakerによって作成されたJSONデータを入出力するサンプルプロジェクトです。
 
