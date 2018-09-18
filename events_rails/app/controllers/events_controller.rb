@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   skip_before_action :verify_authenticity_token
   def index
-    @events = Event.all
+    @events = Event.all.order(:pub_date)
     respond_to do |format|
       format.html
       format.json { render json: @events }
